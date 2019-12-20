@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<title>NewTicketPage</title>
+	<link rel="stylesheet" href="resources/css/TicketStyle.css" type="text/css" />
+</h:head>
+
+<h:body>
+	<b:container>
+	<b:navBar styleClass="navbar bg-primary" brand="UR Ticketing System" brandHref="#" inverse="true" fixed="top">
+	<b:iconAwesome styleClass="pull-left" name="cog" spin="true" size="3x" look="default" />
+		<b:navbarLinks>
+			<b:navLink value="Create Ticket" href="indexTicket.xhtml"></b:navLink>
+			<b:navLink value="Tickets In Queue" href="ticketListPage.xhtml"></b:navLink>
+			<b:navLink value="My Tickets" href="myTickets.xhtml"></b:navLink>
+		</b:navbarLinks>
+
+		<b:form style="padding-top:6px;">
+			<b:commandButton action="#{userBean.logout}" value="Logout"
+				style="float:right;" iconAligh="right"></b:commandButton>
+		</b:form>
+	</b:navBar>	
+
+	    <!-- <h3>Welcome #{userBean.usEntity.userName}</h3> -->
+			
+	<b:container>
+		<b:form style="padding-top: 50px; padding-bottom: 20px; margin-right: auto; margin-left: auto; width:500px; height:300px;">
+				<b:messages infoStyle="color:green" errorStyle="color:red" globalOnly="true"></b:messages>
+     			<h3 style="text-align:center">Create New Ticket</h3>
+					
+					<h:outputLabel value="User Name" for="user" />
+            		#{userBean.usEntity.userName}   <br />         		
+            
+            		<h:outputLabel value="Priority" for="priority" />
+					<b:selectOneMenu id="priority" value="#{ticketBean.tk.priority}" disabled="true">
+						<f:selectItem itemValue="Low" itemLabel="Low" immediate="true" />
+						<f:selectItem itemValue="Medium" itemLabel="Medium" immediate="true" />
+						<f:selectItem itemValue="High" itemLabel="High" immediate="true" />
+					</b:selectOneMenu>
+
+					<h:outputLabel value="Worker Name" for="worker" />
+					<b:selectOneMenu id="worker" value="#{ticketBean.tk.worker}" disabled="true">
+						<f:selectItem itemValue="Sri" itemLabel="Sri" />
+						<f:selectItem itemValue="Joel" itemLabel="Joel" />
+					</b:selectOneMenu>
+
+					<h:outputLabel value="Department" for="department" />
+					<b:selectOneMenu id="department" value="#{ticketBean.tk.department}" disabled="true">
+						<f:selectItem itemValue="Maintenance" itemLabel="Maintenance" />
+					</b:selectOneMenu>
+
+					<h:outputLabel value="Status" for="status" />
+					<b:selectOneMenu id="status" value="#{ticketBean.tk.status}" disabled="true">
+						<f:selectItem itemValue="Open" itemLabel="Open" />
+						<f:selectItem itemValue="In-progress" itemLabel="In-progress" />
+						<f:selectItem itemValue="In-hold" itemLabel="In-hold" />
+						<f:selectItem itemValue="Resolved" itemLabel="Resolved" />
+					</b:selectOneMenu>
+
+					<h:outputLabel value="Title" for="title" />
+					<b:inputText id="title" value="#{ticketBean.tk.title}" required="true" requiredMessage="Title is Required"/>
+					<b:message />
+	
+					<h:outputLabel value="Location" for="location" />
+					<b:inputText id="location" value="#{ticketBean.tk.location}" required="true" requiredMessage="Location is Required"/>
+					<b:message />
+
+					<h:outputLabel value="Room Number" for="roomNum" />
+					<b:inputText id="roomNum" value="#{ticketBean.tk.roomNumber}"/>
+					<b:message />
+					
+					<h:outputLabel value="Description" for="description" />
+					<b:inputTextarea id="description" value="#{ticketBean.tk.description}" required="true" requiredMessage="Description is Required" />
+					<b:message />
+
+					<h:outputLabel value="Comments" for="comments" />
+					<b:inputTextarea id="comments" value="#{ticketBean.tk.comments}" />
+
+
+					<h:outputLabel value="Keep Me Notified" for="notify" />
+					<b:panelGrid size="xs" columns="1">
+					<!--  <h:selectOneRadio value="#{ticketBean.tk.notify}">
+						<f:selectItem itemValue="false" itemLabel="No" />
+						<f:selectItem itemValue="true" itemLabel="Yes" />
+					</h:selectOneRadio> -->
+					<b:radiobutton value="#{ticketBean.tk.notify}" itemValue="false" itemLabel="No"> </b:radiobutton>
+				    <b:radiobutton value="#{ticketBean.tk.notify}" itemValue="true" itemLabel="Yes"> </b:radiobutton>
+				    </b:panelGrid>
+					
+					<b:commandButton class="btn btn-primary" style="width: 500px;" action="#{ticketBean.sendTkDetailstodb}" value="Submit" />
+			</b:form>
+			</b:container>
+			
+	</b:container>
+
+</h:body>
+</html>

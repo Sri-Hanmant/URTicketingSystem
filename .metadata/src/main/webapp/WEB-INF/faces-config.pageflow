@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15707514660010" configfile="/URTicketingSystem/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="jsf/addProduct.xhtml" x="122" y="370" id="pf15719679374610" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15737905171801 pf15742924001890" path="loginPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ticketListPage.xhtml" x="122" y="754" id="pf15727949723721" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf15742924001891" inlinks="pf15742924001891" path="indexTicket.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="indexTicke.xhtml" x="338" y="1138" id="pf15730864194346" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf15742924001892" path="ticketListPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="editTicket.xhtml" x="122" y="1138" id="pf15730911270921" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15742924001892 pf15742924001893" path="editTicket.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/failure.xhtml" x="338" y="562" id="pf15737905171819" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf15737905171801" path="jsf/failure.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/ticketCreatedSuccess.xhtml" x="122" y="1522" id="pf157379051718110" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" path="jsf/ticketCreatedSuccess.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/editTicket.xhtml" x="338" y="2674" id="pf157379051718111" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15742924001894 pf15742924001895" path="jsf/editTicket.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="fjsf/ailure.xhtml" x="122" y="1906" id="pf157379051718112" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" path="fjsf/ailure.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/ticketListPage.xhtml" x="122" y="2674" id="pf157379051718113" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15742924001894 pf15742924001896" inlinks="pf15742924001890" path="jsf/ticketListPage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="failure.xhtml" x="338" y="2290" id="pf15742924001897" referenceLink="//@navigationRule.4/@navigationCase.1/@toViewId|" inlinks="pf15742924001896 pf15742924001898 pf15742924001893" path="failure.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="jsf/myTickets.xhtml" x="122" y="2290" id="pf15742924001899" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15742924001895 pf15742924001898" path="jsf/myTickets.xhtml"/>
+  <links id="pf15737905171801" target="pf15737905171819" source="pf15719679374610" outcome="failure"/>
+  <links id="pf15742924001894" target="pf157379051718111" source="pf157379051718113" outcome="success"/>
+  <links id="pf15742924001896" target="pf15742924001897" source="pf157379051718113" outcome="failure"/>
+  <links id="pf15742924001895" target="pf157379051718111" source="pf15742924001899" outcome="success"/>
+  <links id="pf15742924001898" target="pf15742924001897" source="pf15742924001899" outcome="failure"/>
+  <links id="pf15742924001892" target="pf15730864194346" source="pf15730911270921" outcome="success" redirect="true" fromaction="#{ticketBean.updateTkDetailstodb}"/>
+  <links id="pf15742924001893" target="pf15742924001897" source="pf15730911270921" outcome="failure" fromaction="#{ticketBean.updateTkDetailstodb}"/>
+  <links id="pf15742924001891" target="pf15727949723721" source="pf15727949723721" outcome="success" redirect="true" fromaction="#{ticketBean.sendTkDetailstodb}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf15742924001890" target="pf157379051718113" source="pf15719679374610" outcome="success" redirect="true"/>
+</pageflow:Pageflow>

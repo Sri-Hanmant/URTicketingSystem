@@ -1,0 +1,71 @@
+<!--  This is a login page -->
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>	
+	<title>Login</title>
+	<style>
+	.picture{
+		background-image: url("resources/images/bms1.jpeg");
+		background-size: cover;
+	}
+	</style>
+
+
+</h:head>
+<h:body styleClass="picture">
+
+	<div class="container center-align">
+		<h3 style="color:white;"> UR Ticketing System </h3>	
+	</div>
+	
+	<div class="valign-wrapper" id="login-page">
+		<div class="container">		
+			<div class="center-align">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<h4 class="center-align">Login</h4>
+							<div class="card-content">					
+								<img class="responsive-img" style="max-width: 64px;" src="https://icon-library.net/images/user-icon-vector/user-icon-vector-28.jpg" />
+								<div class="left-align">
+
+									<h:form id="loginForm">		
+										<p:growl autoUpdate="true"> </p:growl>
+										<div class="row">
+											<div class="col s12 input-field">
+												Email : <h:inputText id="username" value="#{userBean.userDetails.userEmail}" required="true" requiredMessage="Email is Required"/>
+											</div>
+											
+											<div class="col s12 input-field">
+												Password : <h:inputSecret value="#{userBean.userDetails.password}" id="password" required="true" requiredMessage="Password is Required"/>
+											</div>
+											<div class="col s12 input-field">
+											
+												<h:commandButton styleClass="btn btn-large" value="Submit" action="#{userBean.login}"></h:commandButton>
+									   		</div>
+									   </div>										
+									
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</h:body>
+</html>

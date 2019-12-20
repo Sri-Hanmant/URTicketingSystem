@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+   version="2.3">
+   
+    <navigation-rule>
+		<from-view-id>loginPage.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>jsf/ticketListPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>failure</from-outcome>
+		     <to-view-id>jsf/failure.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>indexTicket.xhtml</from-view-id>
+		<navigation-case>
+		     <from-action>#{ticketBean.sendTkDetailstodb}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>indexTicket.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>jsf/ticketListPage.xhtml</from-view-id>
+		<navigation-case>
+		    <from-outcome>success</from-outcome>
+			<to-view-id>jsf/editTicket.xhtml</to-view-id>
+			
+		</navigation-case>
+		<navigation-case>
+		     <from-outcome>failure</from-outcome>
+		     <to-view-id>failure.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>jsf/myTickets.xhtml</from-view-id>
+		<navigation-case>
+		    <from-outcome>success</from-outcome>
+			<to-view-id>jsf/editTicket.xhtml</to-view-id>
+			
+		</navigation-case>
+		<navigation-case>
+		     <from-outcome>failure</from-outcome>
+		     <to-view-id>failure.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>editTicket.xhtml</from-view-id>
+		<navigation-case>
+		    <from-action>#{ticketBean.updateTkDetailstodb}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>ticketListPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+		    <from-action>#{ticketBean.updateTkDetailstodb}</from-action>
+			<from-outcome>failure</from-outcome>
+		     <to-view-id>failure.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+</faces-config>

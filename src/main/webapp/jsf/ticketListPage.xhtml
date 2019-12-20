@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+      
+<h:head>
+	<title>TicketListPage</title>
+	<link rel="stylesheet" href="resources/css/TicketStyle.css" type="text/css" />
+</h:head>
+
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+	<b:container>
+	<b:navBar styleClass="navbar bg-primary" brand="UR Ticketing System" brandHref="#" inverse="true" fixed="top">
+	<b:iconAwesome styleClass="pull-left" name="cog" spin="true" size="3x" look="default" />
+		<b:navbarLinks>
+			<b:navLink value="Create Ticket" href="indexTicket.xhtml"></b:navLink>
+			<b:navLink value="Tickets In Queue" href="ticketListPage.xhtml"></b:navLink>
+			<b:navLink value="My Tickets" href="myTickets.xhtml"></b:navLink>
+		</b:navbarLinks>
+
+		<b:form style="padding-top:6px;">
+			<b:commandButton action="#{userBean.logout}" value="Logout"
+				style="float:right;" iconAligh="right">
+			</b:commandButton>
+		</b:form>
+	</b:navBar>
+    
+    <b:container style="padding:4px;"> 
+          
+    <b:form>
+    
+   	<b:messages infoStyle="color:green" errorStyle="color:red" globalOnly="true"></b:messages>
+    
+     <h3 style="text-align:center">Tickets In Queue</h3>
+    
+      <b:dataTable value="#{displayTicketsList.tickets}" var="tickets" 
+      	 styleClass="displayTicketsList-table"
+    	 headerClass="displayTicketsList-table-header"
+   	  	 rowClasses="displayTicketsList-table-odd-row,displayTicketsList-table-even-row"
+    	 >
+         <b:dataTableColumn>    				
+            <f:facet name="header">Ticket # </f:facet>    				
+            #{tickets.ticketId}
+         </b:dataTableColumn>
+        
+          <b:dataTableColumn>    				
+            <f:facet name="header">Priority</f:facet>    				
+            <h:panelGroup id="result">#{tickets.priority}</h:panelGroup>
+         </b:dataTableColumn>
+         
+          <b:dataTableColumn>    				
+            <f:facet name="header">Status</f:facet>    				
+            #{tickets.status}
+         </b:dataTableColumn>
+         
+         <b:dataTableColumn>    				
+            <f:facet name="header">Title</f:facet>    				
+            #{tickets.title}
+         </b:dataTableColumn>
+         
+         <b:dataTableColumn>    				
+            <f:facet name="header">Department</f:facet>    				
+            #{tickets.department}
+         </b:dataTableColumn>
+         
+         <b:dataTableColumn>    				
+            <f:facet name="header">Asignee</f:facet>    				
+            #{tickets.worker}
+         </b:dataTableColumn>
+         
+         <b:dataTableColumn>    				
+            <f:facet name="header">Date Created</f:facet>    				
+            #{tickets.dateCreated}
+         </b:dataTableColumn>
+         
+         <b:dataTableColumn>    				
+            <f:facet name="header">Last Modified</f:facet>    				
+            #{tickets.lastMod}
+         </b:dataTableColumn>
+         
+         <b:dataTableColumn>
+                <f:facet name="header">Update</f:facet>
+                <b:commandButton action="#{ticketBean.editTicketDetails(tickets.ticketId)}" value="Update" look="#{userBean.usEntity.isAdmin ? 'info': 'default'}"/>
+         </b:dataTableColumn>
+	 <b:dataTableColumn>    				
+            <f:facet name="header">Up Priority</f:facet>    				
+            <b:commandButton action="#{priorityBean.sendPDetailstodb}" look="danger" value="Report Again"><f:ajax execute="@form" render="result" /><f:param name="tID" value="#{tickets.ticketId}"/></b:commandButton>
+         </b:dataTableColumn>
+      </b:dataTable>
+   </b:form>
+   </b:container>
+   
+</b:container>  
+
+</h:body>
+</html>
